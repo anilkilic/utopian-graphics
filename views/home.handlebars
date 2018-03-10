@@ -13,9 +13,9 @@
             <img class="card-img-top" src="{{{this.json_metadata.image.[0]}}}" alt="Img">
             <div class="card-body">
                 <h5 class="card-title">{{this.title}}</h5>
-                <p class="card-text">by <a href="../user/{{this.author}}">{{this.author}}</a></p>
-                <p class="card-text">Reviewed by <a href="../moderator/{{this.moderator}}">{{this.moderator}}</a></p>
-                <p class="card-text">Project <a href="../project/{{this.json_metadata.repository.id}}">{{this.json_metadata.repository.full_name}}</a></p>
+                <p class="card-text">by <a href="/user/{{this.author}}">{{this.author}}</a></p>
+                <p class="card-text">Reviewed by <a href="/moderator/{{this.moderator}}">{{this.moderator}}</a></p>
+                <p class="card-text">Project <a href="/project/{{this.json_metadata.repository.id}}">{{this.json_metadata.repository.full_name}}</a></p>
                 <p class="card-text"><small class="text-muted">{{this.json_metadata.moderator.time}}</small></p>
                 <p>
                     <a href="https://utopian.io{{url}}" target="_blank">

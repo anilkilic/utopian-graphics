@@ -141,7 +141,7 @@ app.get('/project/:id', (req, res) => {
         };
         res.render('project', {
             title: 'Project',
-            project: req.params.projectId,
+            project: req.params.id,
             posts: contributions
         });
     });
@@ -162,7 +162,7 @@ app.get('/project/:id/:status', (req, res) => {
         };
         res.render('project', {
             title: 'Project',
-            project: req.params.projectId,
+            project: req.params.id,
             posts: contributions
         });
     });
