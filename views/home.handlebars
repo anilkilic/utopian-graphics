@@ -12,14 +12,17 @@
                 <p class="card-text">Project <a href="../project/{{this.json_metadata.repository.id}}">{{this.json_metadata.repository.full_name}}</a></p>
                 <p class="card-text"><small class="text-muted">{{this.json_metadata.moderator.time}}</small></p>
                 <p>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-                        View
-                    </button>
+                    <a href="https://utopian.io{{url}}" target="_blank">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                            View
+                        </button>
+                    </a>
                 </p>
             </div>
         </div>
 
-        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        {{!-- No modal for now --}}
+        {{!-- <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -36,7 +39,7 @@
                 </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         
         {{/each}}
     </div>

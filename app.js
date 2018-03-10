@@ -33,7 +33,26 @@ app.get('/', (req, res) => {
 app.get('/moderator/:moderatorName', (req, res) => {
     var reviews = [];
     utopian.getPosts({
+        type: 'graphics',
         moderator: req.params.moderatorName,
+        limit: 10
+    }).then((posts) => {
+        for(i = 0; i < posts.results.length; i++) {
+            reviews.push(posts.results[i])
+        };
+        res.render('home', {
+            title: 'Moderator',
+            posts: reviews
+        });
+    });
+});
+
+app.get('/moderator/:moderatorName/:status', (req, res) => {
+    var reviews = [];
+    utopian.getPosts({
+        type: 'graphics',
+        moderator: req.params.moderatorName,
+        status: req.params.status,
         limit: 10
     }).then((posts) => {
         for(i = 0; i < posts.results.length; i++) {
@@ -51,7 +70,27 @@ app.get('/user/:username', (req, res) => {
 
     utopian.getPosts({
         section: 'author',
-        category: 'graphics',
+        type: 'graphics',
+        author: req.params.username,
+        limit: 10
+    }).then((posts) => {
+        for(i = 0; i < posts.results.length; i++) {
+            contributions.push(posts.results[i])
+        };
+        res.render('home', {
+            title: 'User',
+            posts: contributions
+        });
+    });
+});
+
+app.get('/user/:username/:status', (req, res) => {
+    var contributions = [];
+
+    utopian.getPosts({
+        section: 'author',
+        type: 'graphics',
+        status: req.params.status,
         author: req.params.username,
         limit: 10
     }).then((posts) => {
@@ -71,7 +110,7 @@ app.get('/project/:id', (req, res) => {
         section: 'project',
         platform: 'github',
         projectId: req.params.id,
-        // category: 'graphics',
+        // type: 'graphics',
         // author: req.params.username,
         limit: 10
     }).then((posts) => {
