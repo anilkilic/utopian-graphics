@@ -30,6 +30,25 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/waiting', (req, res) => {
+    var graphicPosts = [];
+
+    utopian.getPosts({
+        sortBy: 'created',
+        type: 'graphics',
+        filterBy: 'review',
+        limit: 10
+    }).then((posts) => {
+        for(i = 0; i < posts.results.length; i++) {
+            graphicPosts.push(posts.results[i])
+        }
+        res.render('home', {
+            title: 'Latest Graphics Contributions',
+            posts: graphicPosts
+        });
+    });
+});
+
 app.get('/moderator/:moderatorName', (req, res) => {
     var reviews = [];
     utopian.getPosts({
@@ -110,17 +129,35 @@ app.get('/project/:id', (req, res) => {
         section: 'project',
         platform: 'github',
         projectId: req.params.id,
-        // type: 'graphics',
-        // author: req.params.username,
+        type: 'graphics',
         limit: 10
     }).then((posts) => {
         for(i = 0; i < posts.results.length; i++) {
             contributions.push(posts.results[i])
         };
         res.render('home', {
-            title: 'User',
+            title: 'Project',
             posts: contributions
         });
-        console.log(contributions)
+    });
+});
+
+app.get('/project/:id/:status', (req, res) => {
+    var contributions = [];
+    utopian.getPosts({
+        section: 'project',
+        platform: 'github',
+        projectId: req.params.id,
+        status: req.params.status,
+        type: 'graphics',
+        limit: 10
+    }).then((posts) => {
+        for(i = 0; i < posts.results.length; i++) {
+            contributions.push(posts.results[i])
+        };
+        res.render('home', {
+            title: 'Project',
+            posts: contributions
+        });
     });
 });
