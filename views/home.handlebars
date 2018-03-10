@@ -1,6 +1,12 @@
 <div class="container">
     <h1>{{title}}</h1>
 
+    <nav class="nav nav-pills nav-justified">
+      <a class="nav-item nav-link" href="/reviewed">Reviewed</a>
+      <a class="nav-item nav-link" href="/flagged">Flagged</a>
+      <a class="nav-item nav-link" href="/pending">Pending</a>
+    </nav>
+
     <div class="card-columns">
         {{#each posts}}
         <div class="card">

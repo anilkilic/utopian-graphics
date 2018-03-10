@@ -30,13 +30,13 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/waiting', (req, res) => {
+app.get('/:status', (req, res) => {
     var graphicPosts = [];
 
     utopian.getPosts({
         sortBy: 'created',
         type: 'graphics',
-        filterBy: 'review',
+        status: req.params.status,
         limit: 10
     }).then((posts) => {
         for(i = 0; i < posts.results.length; i++) {
@@ -59,8 +59,9 @@ app.get('/moderator/:moderatorName', (req, res) => {
         for(i = 0; i < posts.results.length; i++) {
             reviews.push(posts.results[i])
         };
-        res.render('home', {
+        res.render('moderator', {
             title: 'Moderator',
+            mod: req.params.moderatorName,
             posts: reviews
         });
     });
@@ -77,8 +78,9 @@ app.get('/moderator/:moderatorName/:status', (req, res) => {
         for(i = 0; i < posts.results.length; i++) {
             reviews.push(posts.results[i])
         };
-        res.render('home', {
+        res.render('moderator', {
             title: 'Moderator',
+            mod: req.params.moderatorName,
             posts: reviews
         });
     });
@@ -96,8 +98,9 @@ app.get('/user/:username', (req, res) => {
         for(i = 0; i < posts.results.length; i++) {
             contributions.push(posts.results[i])
         };
-        res.render('home', {
+        res.render('user', {
             title: 'User',
+            user: req.params.username,
             posts: contributions
         });
     });
@@ -116,8 +119,9 @@ app.get('/user/:username/:status', (req, res) => {
         for(i = 0; i < posts.results.length; i++) {
             contributions.push(posts.results[i])
         };
-        res.render('home', {
+        res.render('user', {
             title: 'User',
+            user: req.params.username,
             posts: contributions
         });
     });
@@ -135,8 +139,9 @@ app.get('/project/:id', (req, res) => {
         for(i = 0; i < posts.results.length; i++) {
             contributions.push(posts.results[i])
         };
-        res.render('home', {
+        res.render('project', {
             title: 'Project',
+            project: req.params.projectId,
             posts: contributions
         });
     });
@@ -155,8 +160,9 @@ app.get('/project/:id/:status', (req, res) => {
         for(i = 0; i < posts.results.length; i++) {
             contributions.push(posts.results[i])
         };
-        res.render('home', {
+        res.render('project', {
             title: 'Project',
+            project: req.params.projectId,
             posts: contributions
         });
     });
