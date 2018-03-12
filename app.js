@@ -178,7 +178,7 @@ app.get('/project/:id', (req, res) => {
         };
         res.render('project', {
             title: 'Project',
-            project: req.params.id,
+            project: posts.results[0].json_metadata.repository,
             posts: contributions,
             total: posts.total
         });
@@ -201,7 +201,7 @@ app.get('/project/:id/:status', (req, res) => {
         };
         res.render('project', {
             title: 'Project',
-            project: req.params.id,
+            project: posts.results[0].json_metadata.repository,
             posts: contributions,
             total: posts.total
         });
