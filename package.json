@@ -21,6 +21,7 @@
   "dependencies": {
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
+    "moment": "^2.21.0",
     "nodemon": "^1.17.1",
     "npm": "^5.7.1",
     "utopian-api": "^0.4.1"

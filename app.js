@@ -3,9 +3,15 @@ const app = express();
 const hbs = require('express-handlebars');
 const path = require('path');
 const utopian = require('utopian-api');
+const moment = require('moment');
 
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', hbs({defaultLayout: 'main'}));
+app.engine('handlebars', hbs({
+    defaultLayout: 'main', 
+    helpers: {
+        formatDate: function(context) { return moment(context).fromNow(); },
+    }
+}));
 app.set('view engine', 'handlebars');
 
 app.listen(process.env.PORT || 3000, function(){
