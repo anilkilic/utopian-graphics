@@ -1,5 +1,5 @@
 const express = require('express');
-const app = express()
+const app = express();
 const hbs = require('express-handlebars');
 const path = require('path');
 const utopian = require('utopian-api');
@@ -21,12 +21,14 @@ app.get('/', (req, res) => {
         limit: (req.query.limit ? req.query.limit : 10),
         skip: (req.query.skip ? req.query.skip : 0)
     }).then((posts) => {
+        console.log('total: ' + posts.total);
         for(i = 0; i < posts.results.length; i++) {
             graphicPosts.push(posts.results[i])
         }
         res.render('home', {
             title: 'Latest Graphics Contributions',
-            posts: graphicPosts
+            posts: graphicPosts,
+            total: posts.total
         });
     });
 });
@@ -46,7 +48,8 @@ app.get('/test', (req, res) => {
         }
         res.render('home', {
             title: 'Latest Graphics Contributions',
-            posts: graphicPosts
+            posts: graphicPosts,
+            total: posts.total
         });
     });
 });
@@ -66,7 +69,8 @@ app.get('/:status', (req, res) => {
         }
         res.render('home', {
             title: 'Latest Graphics Contributions',
-            posts: graphicPosts
+            posts: graphicPosts  ,
+            total: posts.total      
         });
     });
 });
@@ -86,7 +90,8 @@ app.get('/moderator/:moderatorName', (req, res) => {
         res.render('moderator', {
             title: 'Moderator',
             mod: req.params.moderatorName,
-            posts: reviews
+            posts: reviews,
+            total: posts.total
         });
     });
 });
@@ -106,7 +111,8 @@ app.get('/moderator/:moderatorName/:status', (req, res) => {
         res.render('moderator', {
             title: 'Moderator',
             mod: req.params.moderatorName,
-            posts: reviews
+            posts: reviews,
+            total: posts.total
         });
     });
 });
@@ -127,7 +133,9 @@ app.get('/user/:username', (req, res) => {
         res.render('user', {
             title: 'User',
             user: req.params.username,
-            posts: contributions
+            posts: contributions,
+            total: posts.total,
+            total: posts.total
         });
     });
 });
@@ -149,7 +157,8 @@ app.get('/user/:username/:status', (req, res) => {
         res.render('user', {
             title: 'User',
             user: req.params.username,
-            posts: contributions
+            posts: contributions,
+            total: posts.total
         });
     });
 });
@@ -170,7 +179,8 @@ app.get('/project/:id', (req, res) => {
         res.render('project', {
             title: 'Project',
             project: req.params.id,
-            posts: contributions
+            posts: contributions,
+            total: posts.total
         });
     });
 });
@@ -192,7 +202,8 @@ app.get('/project/:id/:status', (req, res) => {
         res.render('project', {
             title: 'Project',
             project: req.params.id,
-            posts: contributions
+            posts: contributions,
+            total: posts.total
         });
     });
 });
