@@ -36,6 +36,10 @@ Filters
 - ../flagged
 - ../pending
 
+Parameters
+- ?limit=
+- ?skip=
+
 # Roadmap
 - Better UI/UX
 - Search Functionality
