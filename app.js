@@ -117,6 +117,8 @@ app.get('/project/:ghuser/:ghproject/:status?', (req, res) => {
     utopian.getPostsByGithubProject( projectFullName, {
         type: 'graphics',
         status: req.params.status || 'any',
+        limit: perPage,
+        skip: ((perPage * page) - perPage)
     }).then((posts) => {
         for(i = 0; i < posts.results.length; i++) {
             contributions.push(posts.results[i])
