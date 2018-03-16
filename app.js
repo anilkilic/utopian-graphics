@@ -11,7 +11,8 @@ app.engine('handlebars', hbs({
     helpers: {
         formatDate: function(context) { return moment(context).fromNow(); },
         checkPrev: function(context) { if (parseInt(context) <= 1) {return "disabled"}; },
-        checkNext: function(totalCount, perPage, page) {if ((parseInt(totalCount) / parseInt(perPage)) <= parseInt(page)) {return "disabled"}; }
+        checkNext: function(totalCount, perPage, page) {if ((parseInt(totalCount) / parseInt(perPage)) <= parseInt(page)) {return "disabled"}; },
+        parseImage: function(bodyText) { var res = bodyText.match(/(https?:\/\/.*\.(?:png|jpg))/i); if (res) { return res[0]; }; }
     }
 }));
 app.set('view engine', 'handlebars');
@@ -91,7 +92,7 @@ app.get('/user/:username/:status?', (req, res) => {
         skip: ((perPage * page) - perPage)
     }).then((posts) => {
         for(i = 0; i < posts.results.length; i++) {
-            contributions.push(posts.results[i])
+            contributions.push(posts.results[i]);
         };
         res.render('user', {
             title: 'User',

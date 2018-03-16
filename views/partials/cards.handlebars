@@ -1,7 +1,7 @@
 <div class="card-columns">
     {{#each posts}}
     <div class="card">
-        <img class="card-img-top" src="{{{this.json_metadata.image.[0]}}}" alt="Img">
+        <img class="card-img-top" src="{{parseImage this.body}}{{!--{{{this.json_metadata.image.[0]}}}--}}" alt="Img">
         <div class="card-body">
             <h5 class="card-title">
                 {{this.title}} <small>by <a href="/user/{{this.author}}">{{this.author}}</a></small>
