@@ -10,12 +10,9 @@ app.engine('handlebars', hbs({
     defaultLayout: 'main', 
     helpers: {
         formatDate: function(context) { return moment(context).fromNow(); },
-<<<<<<< HEAD
         checkPrev: function(context) { if (parseInt(context) <= 1) {return "disabled"}; },
         checkNext: function(totalCount, perPage, page) {if ((parseInt(totalCount) / parseInt(perPage)) <= parseInt(page)) {return "disabled"}; },
         parseImage: function(bodyText) { var res = bodyText.match(/(https?:\/\/.*\.(?:png|jpg))/i); if (res) { return res[0]; }; }
-=======
->>>>>>> parent of 03ff9f3... Pagination (needs improvements)
     }
 }));
 app.set('view engine', 'handlebars');
@@ -24,6 +21,7 @@ app.listen(process.env.PORT || 3000, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
   });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 app.get('/:status?', (req, res) => {
 =======
@@ -71,12 +69,18 @@ app.get('/test', (req, res) => {
 
 app.get('/:status', (req, res) => {
 >>>>>>> parent of 03ff9f3... Pagination (needs improvements)
+=======
+app.get('/:status?', (req, res) => {
+>>>>>>> dev
     var graphicPosts = [];
 
     utopian.getPosts({
         sortBy: 'created',
         type: 'graphics',
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> dev
         status: req.params.status || 'any',
         limit: perPage,
         skip: ((perPage * page) - perPage)
@@ -98,6 +102,9 @@ app.get('/:status', (req, res) => {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> dev
 app.get('/moderator/:moderatorName/:status?', (req, res) => {
     var reviews = [];
     
@@ -112,6 +119,9 @@ app.get('/moderator/:moderatorName', (req, res) => {
         type: 'graphics',
         moderator: req.params.moderatorName,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> dev
         status: req.params.status || 'any',
         limit: perPage,
         skip: ((perPage * page) - perPage)
@@ -132,6 +142,7 @@ app.get('/moderator/:moderatorName', (req, res) => {
     });
 });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 app.get('/user/:username/:status?', (req, res) => {
 =======
@@ -158,6 +169,9 @@ app.get('/moderator/:moderatorName/:status', (req, res) => {
 
 app.get('/user/:username', (req, res) => {
 >>>>>>> parent of 03ff9f3... Pagination (needs improvements)
+=======
+app.get('/user/:username/:status?', (req, res) => {
+>>>>>>> dev
     var contributions = [];
 
     utopian.getPosts({
@@ -184,6 +198,7 @@ app.get('/user/:username', (req, res) => {
 
 app.get('/project/:ghuser/:ghproject/:status?', (req, res) => {
     var contributions = [];
+<<<<<<< HEAD
 
 <<<<<<< HEAD
     var perPage = 9;
@@ -249,6 +264,17 @@ app.get('/project/:id/:status', (req, res) => {
         limit: (req.query.limit ? req.query.limit : 10),
         skip: (req.query.skip ? req.query.skip : 0)
 >>>>>>> parent of 03ff9f3... Pagination (needs improvements)
+=======
+
+    var perPage = 9;
+    var page = req.query.page || 1;
+
+    var projectFullName = req.params.ghuser +'/'+ req.params.ghproject;
+
+    utopian.getPostsByGithubProject( projectFullName, {
+        type: 'graphics',
+        status: req.params.status || 'any',
+>>>>>>> dev
     }).then((posts) => {
         for(i = 0; i < posts.results.length; i++) {
             contributions.push(posts.results[i])
