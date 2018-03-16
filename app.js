@@ -12,7 +12,14 @@ app.engine('handlebars', hbs({
         formatDate: function(context) { return moment(context).fromNow(); },
         checkPrev: function(context) { if (parseInt(context) <= 1) {return "disabled"}; },
         checkNext: function(totalCount, perPage, page) {if ((parseInt(totalCount) / parseInt(perPage)) <= parseInt(page)) {return "disabled"}; },
-        parseImage: function(bodyText) { var res = bodyText.match(/(https?:\/\/.*\.(?:png|jpg))/i); if (res) { return res[0]; }; }
+        parseImage: function(bodyText) { 
+            var res = bodyText.match(/(https?:\/\/.*\.(?:png|jpg))/i); 
+            if (res) { 
+                return 'https://steemitimages.com/0x0/' + res[0]; 
+            } else {
+                return 'https://upload.wikimedia.org/wikipedia/commons/6/6c/No_image_3x4.svg';
+            }; 
+        }
     }
 }));
 app.set('view engine', 'handlebars');
