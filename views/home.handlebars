@@ -20,11 +20,6 @@
         </div>
     </nav>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    {{>cards}}
-    {{>pagination}}
-=======
     <div class="card-columns">
         {{#each posts}}
         <div class="card">
@@ -33,7 +28,7 @@
                 <h5 class="card-title">
                     {{this.title}} <small>by <a href="/user/{{this.author}}">{{this.author}}</a></small>
                 </h5>
-                <a href="/project/{{this.json_metadata.repository.id}}" class="btn btn-block btn-outline-primary btn-sm">{{this.json_metadata.repository.full_name}}</a>
+                <a href="/project/{{this.json_metadata.repository.full_name}}" class="btn btn-block btn-outline-primary btn-sm">{{this.json_metadata.repository.full_name}}</a>
                 <hr>
                 <p class="card-text">
                     <small class="text-muted"><span class="float-left">Reviewed by <a href="/moderator/{{this.moderator}}">{{this.moderator}}</a><br/>
@@ -54,9 +49,4 @@
         </div>
         {{/each}}
     </div>
->>>>>>> parent of 03ff9f3... Pagination (needs improvements)
-=======
-    {{>cards}}
-    {{>pagination}}
->>>>>>> dev
 </div>
