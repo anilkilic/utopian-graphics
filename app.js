@@ -34,13 +34,15 @@ app.get('/:status?', (req, res) => {
     var perPage = 9;
     var page = req.query.page || 1;
 
-    utopian.getPosts({
+    var query = {
         sortBy: 'created',
         type: 'graphics',
-        status: req.params.status || 'any',
         limit: perPage,
         skip: ((perPage * page) - perPage)
-    }).then((posts) => {
+    }
+    req.params.status === "pending" ? query.filterBy = "review" : query.status = req.params.status || "any";
+
+    utopian.getPosts(query).then((posts) => {
         for(i = 0; i < posts.results.length; i++) {
             graphicPosts.push(posts.results[i])
         }
@@ -121,12 +123,15 @@ app.get('/project/:ghuser/:ghproject/:status?', (req, res) => {
 
     var projectFullName = req.params.ghuser +'/'+ req.params.ghproject;
 
-    utopian.getPostsByGithubProject( projectFullName, {
+    var query = {
+        sortBy: 'created',
         type: 'graphics',
-        status: req.params.status || 'any',
         limit: perPage,
         skip: ((perPage * page) - perPage)
-    }).then((posts) => {
+    }
+    req.params.status === "pending" ? query.filterBy = "review" : query.status = req.params.status || "any";
+
+    utopian.getPostsByGithubProject( projectFullName, query).then((posts) => {
         for(i = 0; i < posts.results.length; i++) {
             contributions.push(posts.results[i])
         };
