@@ -9,8 +9,8 @@
             <a href="/project/{{this.json_metadata.repository.full_name}}" class="btn btn-block btn-outline-primary btn-sm">{{this.json_metadata.repository.full_name}}</a>
             <hr>
             <p class="card-text">
-                <small class="text-muted"><span class="float-left">Reviewed by <a href="/moderator/{{this.moderator}}">{{this.moderator}}</a><br/>
-                {{formatDate this.json_metadata.moderator.time}}</span></small>
+                <small class="text-muted"><span class="float-left">{{#if this.moderator}} Reviewed by <a href="/moderator/{{this.moderator}}">{{this.moderator}}</a>{{else}}Not reviewed yet{{/if}}<br/>
+                {{#if this.json_metadata.moderator.time}}{{formatDate this.json_metadata.moderator.time}}{{else}} Posted {{formatDate this.created}}{{/if}}</span></small>
             </p>
             <div class="float-right mb-3">
                 <div class="btn-group">
